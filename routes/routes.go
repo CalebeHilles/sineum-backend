@@ -13,11 +13,11 @@ import (
 func HandleRequest() {
 	r := mux.NewRouter()
 	r.Use(middleware.ContentTypeMiddleware)
-	r.HandleFunc("/api/blogs", controller.GetEveryBlogs).Methods("GET")
-	r.HandleFunc("/api/blogs/{id}", controller.GetBlogsById).Methods("GET")
-	r.HandleFunc("/api/blogs", controller.CreateBlogs).Methods("POST")
-	r.HandleFunc("/api/blogs/{id}", controller.DeleteBlogs).Methods("DELETE")
-	r.HandleFunc("/api/blogs/{id}", controller.EditBlogs).Methods("PUT")
+	r.HandleFunc("/blogs", controller.GetEveryBlogs).Methods("GET")
+	r.HandleFunc("/blogs/{id}", controller.GetBlogsById).Methods("GET")
+	r.HandleFunc("/blogs", controller.CreateBlogs).Methods("POST")
+	r.HandleFunc("/blogs/{id}", controller.DeleteBlogs).Methods("DELETE")
+	r.HandleFunc("/blogs/{id}", controller.EditBlogs).Methods("PUT")
 
 	corsOptions := handlers.CORS(
 		handlers.AllowedOrigins([]string{
