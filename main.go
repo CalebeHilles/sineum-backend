@@ -19,6 +19,6 @@ func main() {
 func openDotEnv() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env")
+		log.Println("Proceeding with production environment variables")
 	}
 }

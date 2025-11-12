@@ -5,6 +5,7 @@ import (
 	"api-go/middleware"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
@@ -32,5 +33,7 @@ func HandleRequest() {
 		}),
 	)
 
-	log.Fatal(http.ListenAndServe(":8000", corsOptions(r)))
+	port := os.Getenv("PORT")
+	println("Project running on http://localhost:" + port)
+	log.Fatal(http.ListenAndServe(":"+port, corsOptions(r)))
 }
