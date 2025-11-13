@@ -1,8 +1,12 @@
 # Sineum Backend API
 
 REST API for blog management built with Golang and PostgreSQL.
-
 This API uses GORM as ORM and the database is hosted on Neon DB.
+
+## Base URL
+
+**Local:** `http://localhost:8000`  
+**Production:** `https://seu-dominio.railway.app`
 
 ## Endpoints
 
