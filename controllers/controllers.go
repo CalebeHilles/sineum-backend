@@ -27,7 +27,7 @@ func GetBlogsById(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var b []models.Blog
+	var b models.Blog
 	database.DB.First(&b, id)
 	json.NewEncoder(w).Encode(b)
 }
