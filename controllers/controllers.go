@@ -76,8 +76,20 @@ func EditBlogs(w http.ResponseWriter, r *http.Request) {
 	id := vars["id"]
 
 	var b models.Blog
-	database.DB.First(&b, id)
+	fetchResult := database.DB.First(&b, id)
+
+	if fetchResult.Error != nil {
+		http.Error(w, "Blog not found", http.StatusNotFound)
+		return
+	}
+
 	json.NewDecoder(r.Body).Decode(&b)
-	database.DB.Save(&b)
+	result := database.DB.Save(&b)
+
+	if result.Error != nil {
+		http.Error(w, "Server failed saving changes", http.StatusInternalServerError)
+		return
+	}
+
 	json.NewEncoder(w).Encode(b)
 }
