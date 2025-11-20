@@ -26,7 +26,13 @@ func GetBlogsById(w http.ResponseWriter, r *http.Request) {
 	id := vars["id"]
 
 	var b models.Blog
-	database.DB.First(&b, id)
+	result := database.DB.First(&b, id)
+
+	if result.Error != nil {
+		http.Error(w, "Blog not found", http.StatusNotFound)
+		return
+	}
+
 	json.NewEncoder(w).Encode(b)
 }
 
