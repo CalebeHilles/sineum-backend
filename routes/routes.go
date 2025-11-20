@@ -23,7 +23,7 @@ func HandleRequest() {
 	corsOptions := handlers.CORS(
 		handlers.AllowedOrigins([]string{
 			"http://localhost:3000",
-			"https://kleb-letter.vercel.app",
+			"https://sineum.vercel.app",
 		}),
 		handlers.AllowedMethods([]string{
 			"GET", "POST", "PUT", "DELETE",
