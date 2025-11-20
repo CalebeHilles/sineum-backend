@@ -5,7 +5,6 @@ import (
 	"api-go/models"
 	"encoding/json"
 	"net/http"
-	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -18,14 +17,7 @@ func GetEveryBlogs(w http.ResponseWriter, r *http.Request) {
 
 func GetBlogsById(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	idStr := vars["id"]
-
-	id, err := strconv.Atoi(idStr)
-
-	if err != nil {
-		http.Error(w, "invalid id", http.StatusBadRequest)
-		return
-	}
+	id := vars["id"]
 
 	var b models.Blog
 	database.DB.First(&b, id)
@@ -41,14 +33,7 @@ func CreateBlogs(w http.ResponseWriter, r *http.Request) {
 
 func DeleteBlogs(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	idStr := vars["id"]
-
-	id, err := strconv.Atoi(idStr)
-
-	if err != nil {
-		http.Error(w, "invalid id", http.StatusBadRequest)
-		return
-	}
+	id := vars["id"]
 
 	var b []models.Blog
 	database.DB.Delete(&b, id)
@@ -57,14 +42,7 @@ func DeleteBlogs(w http.ResponseWriter, r *http.Request) {
 
 func EditBlogs(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	idStr := vars["id"]
-
-	id, err := strconv.Atoi(idStr)
-
-	if err != nil {
-		http.Error(w, "invalid id", http.StatusBadRequest)
-		return
-	}
+	id := vars["id"]
 
 	var b models.Blog
 	database.DB.First(&b, id)
