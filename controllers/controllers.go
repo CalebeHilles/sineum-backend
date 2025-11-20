@@ -11,7 +11,13 @@ import (
 
 func GetEveryBlogs(w http.ResponseWriter, r *http.Request) {
 	var b []models.Blog
-	database.DB.Find(&b)
+	result := database.DB.Find(&b)
+
+	if result.Error != nil {
+		http.Error(w, "Server failed getting every blogs", http.StatusInternalServerError)
+		return
+	}
+
 	json.NewEncoder(w).Encode(b)
 }
 
