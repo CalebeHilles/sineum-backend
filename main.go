@@ -12,6 +12,14 @@ func main() {
 	openDotEnv()
 
 	database.ConnectToDatabase()
+
+	defer func() {
+		err := database.CloseDatabase()
+		if err != nil {
+			fmt.Println("Error closing the database:", err)
+		}
+	}()
+
 	fmt.Println("Initializing server...")
 	routes.HandleRequest()
 }

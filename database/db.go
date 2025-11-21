@@ -22,3 +22,11 @@ func ConnectToDatabase() {
 		log.Fatal("Error connecting to database")
 	}
 }
+
+func CloseDatabase() error {
+	sqlDB, err := DB.DB()
+	if err != nil {
+		return err
+	}
+	return sqlDB.Close()
+}
